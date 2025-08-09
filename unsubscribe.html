@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <title>Berhenti Langgan</title>
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbw1kwLnYA2vP2IwhHimhPu5tNMyCHczXbad_Mepptqa_rB_PxUHEHeix-GsFwiCnhSr/exec?email={{EMAIL}}">
+<meta charset="UTF-8">
+<title>Berhenti Langgan</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+  h1 { color: #d9534f; }
+</style>
 </head>
 <body>
-  <p>Sila tunggu...</p>
+  <h1>Anda telah berhenti langgan.</h1>
+  <p id="message">Alamat e-mel <span id="email"></span> telah dikeluarkan dari senarai kami.</p>
+
+  <script>
+    // Fungsi untuk ambil parameter dari URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Dapatkan email dari URL
+    const email = getQueryParam("email");
+    document.getElementById("email").textContent = email ? email : "(tidak diketahui)";
+  </script>
 </body>
 </html>
 
