@@ -1,23 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <title>Berhenti Langgan</title>
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbwh0p6bjzxHGZsXPfQROtombVmkz911Df3noJd9ArlgNPbeG6_pkShPLAgCggtMx2Zd/exec?email=EMAIL_PLACEHOLDER">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berhenti Langgan | Koperasi4U</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #dfe7f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            text-align: center;
+            padding: 50px 30px;
+            position: relative;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 36px;
+            color: white;
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .confirmation-text {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #4facfe;
+            text-align: center;
+        }
+        
+        .confirmation-text p {
+            font-size: 18px;
+            color: #34495e;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .user-email {
+            display: inline-block;
+            background: #e3f2fd;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin: 15px 0;
+            font-size: 18px;
+            word-break: break-all;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .brand {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+            font-size: 16px;
+        }
+        
+        .processing {
+            display: none;
+            margin: 30px 0;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(79, 172, 254, 0.2);
+            border-top: 5px solid #4facfe;
+            border-radius: 50%;
+            margin: 0 auto;
+            animation: spin 1s linear infinite;
+        }
+        
+        .processing-text {
+            margin-top: 15px;
+            color: #4a6491;
+            font-weight: 500;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .success-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 32px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .confirmation-text {
+                padding: 20px 15px;
+            }
+            
+            .confirmation-text p {
+                font-size: 16px;
+            }
+            
+            .user-email {
+                font-size: 16px;
+                padding: 6px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Anda telah berhenti langgan</h1>
-    <p>Alamat e-mel <strong id="email"></strong> telah dikeluarkan dari senarai kami.</p>
-  </div>
-
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const email = urlParams.get('email') || 'Tidak diketahui';
-    document.getElementById('email').innerText = email;
-  </script>
+    <div class="container">
+        <div class="processing" id="processing">
+            <div class="spinner"></div>
+            <p class="processing-text">Memproses permintaan anda...</p>
+        </div>
+        
+        <div id="confirmation">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1>Berhenti Langgan</h1>
+            
+            <div class="confirmation-text">
+                <p>Anda telah berhenti langgan</p>
+                <p>Alamat e-mel <span class="user-email" id="userEmail">muhibbahkw@gmail.com</span></p>
+                <p>telah dikeluarkan dari senarai kami.</p>
+            </div>
+            
+            <div class="footer">
+                <p>Anda tidak akan menerima sebarang e-mel pemasaran daripada kami lagi.</p>
+                <p>Terima kasih kerana pernah menjadi sebahagian daripada komuniti kami.</p>
+                <span class="brand">Koperasi4U.Cloud</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email') || 'muhibbahkw@gmail.com';
+            
+            // Set user email
+            document.getElementById('userEmail').textContent = email;
+            
+            // Show processing indicator initially
+            document.getElementById('confirmation').style.display = 'none';
+            document.getElementById('processing').style.display = 'block';
+            
+            // Google Apps Script URL - REPLACE WITH YOUR ACTUAL SCRIPT URL
+            const scriptURL = 'https://script.google.com/macros/s/APP_SCRIPT_ID/exec';
+            
+            // Send request to Google Sheets to unsubscribe
+            fetch(`${scriptURL}?email=${encodeURIComponent(email)}`, {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // Hide processing and show confirmation
+                document.getElementById('processing').style.display = 'none';
+                document.getElementById('confirmation').style.display = 'block';
+                
+                console.log('Unsubscribe successful:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Still show confirmation even if logging fails
+                document.getElementById('processing').style.display = 'none';
+                document.getElementById('confirmation').style.display = 'block';
+                
+                // Update message to indicate possible issue
+                document.querySelector('.confirmation-text p:first-child').textContent = 
+                    'Permintaan berhenti langgan anda telah diterima.';
+                document.querySelector('.confirmation-text p:last-child').innerHTML = 
+                    'Sekiranya anda masih menerima e-mel, sila hubungi <a href="mailto:support@koperasi4u.cloud">support@koperasi4u.cloud</a>';
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
 
